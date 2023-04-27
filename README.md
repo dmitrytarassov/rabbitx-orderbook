@@ -22,7 +22,7 @@ export interface IOrderBookEmitter extends Emittery {
 }
 ```
 
-I used the Emittery library to make it observable. I plan to subscribe on new messages about orderbook change.
+I used the Emittery library to make it observable. I plan to subscribe to new messages about orderbook change.
 
 I realized abstract class with common logic: `src/app/utils/OrderBookEmitter/OrderBookEmitter.ts`
 ```typescript
