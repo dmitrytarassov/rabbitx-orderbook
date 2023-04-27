@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+}
+
+.tab {
+  line-height: 2rem;
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+  background-color: var(--backbround-tabs-devault);
+
+  :hover {
+    background-color: var(--backbround-tabs-active);
+  }
+}
+
+.active {
+  background-color: var(--backbround-tabs-active);
+}

@@ -1,0 +1,66 @@
+.container {
+  background: var(--color-background-card);
+  width: 100%;
+  display: grid;
+  grid-gap: 0.25rem;
+  grid-template-rows: 2rem 15rem 2rem 15rem;
+  padding: 0.5rem 0;
+}
+
+.block {
+  display: flex;
+  flex-direction: column-reverse;
+  line-height: 1rem;
+  font-size: 0.8rem;
+  color: var(--asks);
+
+  .order {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    position: relative;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+
+    span {
+      z-index: 2;
+    }
+
+    &:after {
+      background-color: var(--asks);
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0.05;
+    }
+  }
+
+  &.asks {
+    flex-direction: column;
+    color: var(--bids);
+
+    .order {
+      &:after {
+        background-color: var(--bids);
+      }
+    }
+  }
+}
+
+.info {
+  line-height: 2rem;
+  padding: 0 1rem;
+}
+
+.up {
+  color: var(--bids);
+}
+
+.down {
+  color: var(--asks);
+}
+

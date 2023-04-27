@@ -1,0 +1,55 @@
+:root {
+  font-size: 16px;
+  --border-radius: 0.5rem;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+
+  --color-text: #000;
+  --color-background: #fff;
+  --color-background-card: #eee;
+  --bids: #44b006;
+  --asks: #9b3102;
+  --backbround-tabs-devault: #eee;
+  --backbround-tabs-active: #ddd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: #fff;
+    --color-background: #000;
+    --color-background-card: #111;
+    --backbround-tabs-devault: #111;
+    --backbround-tabs-active: #333;
+
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--color-text);
+  background: var(--color-background);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}

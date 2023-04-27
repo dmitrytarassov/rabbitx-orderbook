@@ -1,0 +1,48 @@
+@import "../../mixins";
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 2rem 0;
+}
+
+.subContainer {
+  max-width: 50rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
+.tabs {
+  width: 100%;
+  max-width: 75rem;
+  margin-bottom: 2rem;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  width: 100%;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+.block {
+  display: flex;
+  width: 100%;
+}
