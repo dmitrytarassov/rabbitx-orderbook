@@ -10,20 +10,22 @@ interface OrderBookProps {
 }
 
 const OrderBook: React.FC<OrderBookProps> = ({ market }) => {
-  const orderBook = useOrderBook();
+  const { watch, unwatch, getMarketOrderBook, orderBook } = useOrderBook();
 
   React.useEffect(() => {
-    orderBook.watch(market);
+    watch(market);
 
     return () => {
-      orderBook.unwatch(market);
+      unwatch(market);
     };
   }, [market]);
 
   const marketOrderBook = React.useMemo(
-    () => orderBook.orderBook[market],
-    [market, orderBook.orderBook[market]]
+    () => getMarketOrderBook(market),
+    [market, orderBook[market]]
   );
+
+  console.log("rerender OrderBook");
 
   return (
     <div className={styles.container}>
@@ -32,20 +34,20 @@ const OrderBook: React.FC<OrderBookProps> = ({ market }) => {
       ) : (
         <>
           <div className={styles.info}>Market: {market}</div>
-          <Orders orders={marketOrderBook?.bids || []} type="bids" />
+          <Orders orders={marketOrderBook.bids} type="bids" />
           <div
-            className={classNames(
-              styles.info,
-              marketOrderBook?.destination === "up" ? styles.up : styles.down
-            )}
+            className={classNames(styles.info, {
+              [styles.up]: marketOrderBook.destination === "up",
+              [styles.down]: marketOrderBook.destination === "down",
+            })}
           >
-            {marketOrderBook?.average}
+            {marketOrderBook.average || ""}
           </div>
-          <Orders orders={marketOrderBook?.asks || []} type="asks" />
+          <Orders orders={marketOrderBook.asks} type="asks" />
         </>
       )}
     </div>
   );
 };
 
-export default OrderBook;
+export default React.memo(OrderBook);

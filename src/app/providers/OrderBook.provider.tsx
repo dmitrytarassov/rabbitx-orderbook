@@ -11,6 +11,13 @@ interface OrderBookProviderProps {
   children: React.ReactNode;
 }
 
+interface IMarketOrderBook {
+  bids: TOrderBook;
+  asks: TOrderBook;
+  average: number;
+  destination: MarketDestination;
+}
+
 export interface IOrderBookContext {
   orderBook: {
     [market: string]: {
@@ -24,7 +31,15 @@ export interface IOrderBookContext {
   unwatch: (pair: string) => void;
   updateMode: (mode: WebSocketOrWebWorker) => void;
   mode: WebSocketOrWebWorker;
+  getMarketOrderBook: (market: string) => IMarketOrderBook;
 }
+
+const defaultMarketOrderBook: IMarketOrderBook = {
+  bids: [],
+  asks: [],
+  average: 0,
+  destination: "none",
+};
 
 export const OrderBookContext = createContext<IOrderBookContext>({
   orderBook: {},
@@ -32,6 +47,7 @@ export const OrderBookContext = createContext<IOrderBookContext>({
   unwatch: () => ({}),
   updateMode: () => ({}),
   mode: "web_socket",
+  getMarketOrderBook: () => defaultMarketOrderBook,
 });
 
 const watchersCount: {
@@ -112,6 +128,10 @@ const OrderBookProvider: React.FC<OrderBookProviderProps> = ({ children }) => {
     set_mode(mode);
   };
 
+  const getMarketOrderBook = (market: string) => {
+    return orderBook[market] || defaultMarketOrderBook;
+  };
+
   return (
     <OrderBookContext.Provider
       value={{
@@ -120,6 +140,7 @@ const OrderBookProvider: React.FC<OrderBookProviderProps> = ({ children }) => {
         unwatch,
         updateMode,
         mode,
+        getMarketOrderBook,
       }}
     >
       {children}

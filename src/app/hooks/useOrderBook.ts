@@ -6,7 +6,7 @@ export const useOrderBook = () => {
   const context = useContext(OrderBookContext);
 
   if (!context) {
-    throw new Error("Can not find context Web3ProviderContext");
+    throw new Error("Can not find context OrderBookContext");
   }
 
   return context;

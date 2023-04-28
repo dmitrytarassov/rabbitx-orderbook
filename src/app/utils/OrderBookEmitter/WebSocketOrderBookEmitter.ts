@@ -116,7 +116,7 @@ export class WebSocketOrderBookEmitter
         };
 
         sub.on("subscribed", (response) => {
-          this.setData(market, response.data.asks, response.data.bids);
+          this.publicationHandlers[chanelName](response);
 
           sub.on("publication", this.publicationHandlers[chanelName]);
         });
