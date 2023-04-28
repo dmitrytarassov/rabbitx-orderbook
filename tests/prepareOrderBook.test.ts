@@ -4,7 +4,7 @@ import { IMarketOrderBook } from "@/app/dtos/IMarketOrderBook";
 import { IOrders } from "@/app/dtos/IOrders";
 import { TOrderBook } from "@/app/dtos/TOrderBook";
 
-describe("", function () {
+describe("prepare order book", function () {
   const marketAInitialBids: IOrders = {
     1: 10,
     2: 10,
